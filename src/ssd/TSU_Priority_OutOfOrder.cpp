@@ -11,11 +11,11 @@ TSU_Priority_OutOfOrder::TSU_Priority_OutOfOrder(const sim_object_id_type &id,
                                                  unsigned int ChipNoPerChannel,
                                                  unsigned int DieNoPerChip,
                                                  unsigned int PlaneNoPerDie,
+                                                 bool EraseSuspensionEnabled,
+                                                 bool ProgramSuspensionEnabled,
                                                  sim_time_type WriteReasonableSuspensionTimeForRead,
                                                  sim_time_type EraseReasonableSuspensionTimeForRead,
-                                                 sim_time_type EraseReasonableSuspensionTimeForWrite,
-                                                 bool EraseSuspensionEnabled,
-                                                 bool ProgramSuspensionEnabled)
+                                                 sim_time_type EraseReasonableSuspensionTimeForWrite)
     : TSU_Base(id,
                ftl,
                NVMController,
@@ -24,11 +24,11 @@ TSU_Priority_OutOfOrder::TSU_Priority_OutOfOrder(const sim_object_id_type &id,
                ChipNoPerChannel,
                DieNoPerChip,
                PlaneNoPerDie,
+               EraseSuspensionEnabled,
+               ProgramSuspensionEnabled,
                WriteReasonableSuspensionTimeForRead,
                EraseReasonableSuspensionTimeForRead,
-               EraseReasonableSuspensionTimeForWrite,
-               EraseSuspensionEnabled,
-               ProgramSuspensionEnabled)
+               EraseReasonableSuspensionTimeForWrite)
 {
     UserReadTRQueue = new Flash_Transaction_Queue **[channel_count];
     UserWriteTRQueue = new Flash_Transaction_Queue **[channel_count];

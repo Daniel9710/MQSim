@@ -5,13 +5,13 @@ namespace SSD_Components
 
 TSU_OutOfOrder::TSU_OutOfOrder(const sim_object_id_type &id, FTL *ftl, NVM_PHY_ONFI_NVDDR2 *NVMController, unsigned int ChannelCount, unsigned int chip_no_per_channel,
 							   unsigned int DieNoPerChip, unsigned int PlaneNoPerDie,
+							   bool EraseSuspensionEnabled, bool ProgramSuspensionEnabled,
 							   sim_time_type WriteReasonableSuspensionTimeForRead,
 							   sim_time_type EraseReasonableSuspensionTimeForRead,
-							   sim_time_type EraseReasonableSuspensionTimeForWrite,
-							   bool EraseSuspensionEnabled, bool ProgramSuspensionEnabled)
+							   sim_time_type EraseReasonableSuspensionTimeForWrite)
 	: TSU_Base(id, ftl, NVMController, Flash_Scheduling_Type::OUT_OF_ORDER, ChannelCount, chip_no_per_channel, DieNoPerChip, PlaneNoPerDie,
-			   WriteReasonableSuspensionTimeForRead, EraseReasonableSuspensionTimeForRead, EraseReasonableSuspensionTimeForWrite,
-			   EraseSuspensionEnabled, ProgramSuspensionEnabled)
+			   EraseSuspensionEnabled, ProgramSuspensionEnabled,
+			   WriteReasonableSuspensionTimeForRead, EraseReasonableSuspensionTimeForRead, EraseReasonableSuspensionTimeForWrite)
 {
 	UserReadTRQueue = new Flash_Transaction_Queue *[channel_count];
 	UserWriteTRQueue = new Flash_Transaction_Queue *[channel_count];

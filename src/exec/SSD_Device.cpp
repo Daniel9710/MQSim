@@ -141,18 +141,18 @@ SSD_Device::SSD_Device(Device_Parameter_Set *parameters, std::vector<IO_Flow_Par
 		case SSD_Components::Flash_Scheduling_Type::OUT_OF_ORDER:
 			tsu = new SSD_Components::TSU_OutOfOrder(ftl->ID() + ".TSU", ftl, static_cast<SSD_Components::NVM_PHY_ONFI_NVDDR2 *>(device->PHY),
 													 parameters->Flash_Channel_Count, parameters->Chip_No_Per_Channel,
+													 erase_suspension, program_suspension,
 													 parameters->Flash_Parameters.Die_No_Per_Chip, parameters->Flash_Parameters.Plane_No_Per_Die,
 													 parameters->Preferred_suspend_write_time_for_read, parameters->Preferred_suspend_erase_time_for_read,
-													 parameters->Preferred_suspend_erase_time_for_write,
-													 erase_suspension, program_suspension);
+													 parameters->Preferred_suspend_erase_time_for_write);
 			break;
 		case SSD_Components::Flash_Scheduling_Type::PRIORITY_OUT_OF_ORDER:
 			tsu = new SSD_Components::TSU_Priority_OutOfOrder(ftl->ID() + ".TSU", ftl, static_cast<SSD_Components::NVM_PHY_ONFI_NVDDR2 *>(device->PHY),
 										  parameters->Flash_Channel_Count, parameters->Chip_No_Per_Channel,
+										  erase_suspension, program_suspension,
 										  parameters->Flash_Parameters.Die_No_Per_Chip, parameters->Flash_Parameters.Plane_No_Per_Die,
 										  parameters->Preferred_suspend_write_time_for_read, parameters->Preferred_suspend_erase_time_for_read,
-										  parameters->Preferred_suspend_erase_time_for_write,
-										  erase_suspension, program_suspension);
+										  parameters->Preferred_suspend_erase_time_for_write);
 			break;
 		/*case SSD_Components::Flash_Scheduling_Type::FLIN:
 				{
@@ -307,7 +307,8 @@ SSD_Device::SSD_Device(Device_Parameter_Set *parameters, std::vector<IO_Flow_Par
 															 parameters->Flash_Channel_Count, parameters->Chip_No_Per_Channel,
 															 parameters->Flash_Parameters.Die_No_Per_Chip, parameters->Flash_Parameters.Plane_No_Per_Die,
 															 parameters->Flash_Parameters.Block_No_Per_Plane, parameters->Flash_Parameters.Page_No_Per_Block,
-															 parameters->Flash_Parameters.Page_Capacity / SECTOR_SIZE_IN_BYTE, parameters->Use_Copyback_for_GC, max_rho, 10,
+															 parameters->Flash_Parameters.Page_Capacity / SECTOR_SIZE_IN_BYTE, parameters->Use_Copyback_for_GC, max_rho, 10, 
+															 parameters->Dynamic_Wearleveling_Enabled, parameters->Static_Wearleveling_Enabled, parameters->Static_Wearleveling_Threshold,
 															 parameters->Seed++);
 		Simulator->AddObject(gcwl);
 		fbm->Set_GC_and_WL_Unit(gcwl);

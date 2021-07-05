@@ -28,11 +28,11 @@ public:
 				   unsigned int chip_no_per_channel,
 				   unsigned int DieNoPerChip,
 				   unsigned int PlaneNoPerDie,
+				   bool EraseSuspensionEnabled,
+				   bool ProgramSuspensionEnabled,
 				   sim_time_type WriteReasonableSuspensionTimeForRead,
 				   sim_time_type EraseReasonableSuspensionTimeForRead,
-				   sim_time_type EraseReasonableSuspensionTimeForWrite,
-				   bool EraseSuspensionEnabled,
-				   bool ProgramSuspensionEnabled);
+				   sim_time_type EraseReasonableSuspensionTimeForWrite);
 	~TSU_OutOfOrder();
 
 	void Schedule();
